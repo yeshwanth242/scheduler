@@ -1,0 +1,34 @@
+<div style="float:left"><ejs-schedule #scheduleObj cssClass='schedule-drag-drop' width='1000' [group]="group"
+[currentView]="currentView"  [workHours]="workHours" [eventSettings]="eventSettings"
+(actionBegin)="onActionBegin($event)" (drag)="onItemDrag($event)">
+
+<e-resources>
+  <e-resource field='DriverlistID' title='Driver-list' name='Driver-list' [dataSource]='departmentDataSource'
+      textField='Text' idField='Id' colorField='Color'>
+  </e-resource>
+  <e-resource field='DriverID' title='Driver' name='Driver' [dataSource]='DriverDataSource'
+      [allowMultiple]='allowMultiple' textField='Text' idField='Id' groupIDField="GroupId" colorField='Color'>
+  </e-resource>
+</e-resources>
+
+<ng-template #resourceHeaderTemplate let-data>
+  <div class="template-wrap">
+      <div class="specialist-category">
+          <div class="Driver-name">{{getDriverName(data)}}</div>
+          <div class="Vehicle-designation">{{getVehicleDesignation(data)}}</div>
+      </div>
+  </div>
+</ng-template>
+<e-views>
+  <e-view option='TimelineDay'></e-view>
+  <e-view option='TimelineWeek'></e-view>
+  <!-- <e-view option='Agenda'></e-view> -->
+</e-views>
+</ejs-schedule>
+</div>
+<div style="width:300px;float:right;margin-right: auto;">
+<h1 class="title-text">Customer List</h1>
+<ejs-treeview #treeObj  [fields]='field' cssClass='treeview-external-drag' [allowDragAndDrop]='allowDragAndDrop'
+(nodeDragStop)="onTreeDragStop($event)" (nodeDragging)="onItemDrag($event)"></ejs-treeview>
+</div>
+
