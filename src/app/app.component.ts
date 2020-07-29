@@ -24,8 +24,8 @@ export class AppComponent {
     public currentView: View = 'TimelineDay';
     public workHours: WorkHoursModel = { start: '08:00', end: '11:00' };
     public departmentDataSource: Object[] = [
-        { Text: '  Drivers list one ', Id: 1, Color: '#bbdc00' },
-        { Text: '  Drivers list two ', Id: 2, Color: '#9e5fff' }
+        { Text: '  Drivers ', Id: 1, Color: '#bbdc00' },
+        { Text: '  Movers ', Id: 2, Color: '#9e5fff' }
     ];
     public DriverDataSource: Object[] = [
         { Text: 'Alice', Id: 1, GroupId: 1, Color: '#bbdc00',Vehicle:'VEH120'},
@@ -37,7 +37,7 @@ export class AppComponent {
         { Text: 'John', Id: 7, GroupId: 2, Color: '#9e5fff',Vehicle:'VEH240'},
         { Text: 'Paul', Id: 8, GroupId: 2, Color: '#9e5fff',Vehicle:'VEH260'}
     ];
-    public group: GroupModel = { enableCompactView: false, resources: ['Driverslist', 'Driver'] };
+    public group: GroupModel = { enableCompactView: false, resources: ['Assign', 'Driver'] };
     public allowMultiple: Boolean = false;
     public eventSettings: EventSettingsModel = {
         dataSource: workData,
@@ -60,7 +60,7 @@ export class AppComponent {
     getDriverStatus(value: ResourceDetails): boolean {
         let resourceName: string =
             (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] as string;
-        if (resourceName === 'Drivers list-one' || resourceName === 'Drivers list-two') {
+        if (resourceName === 'Drivers' || resourceName === 'Movers') {
             return false;
         } else {
             return true;
@@ -70,7 +70,7 @@ export class AppComponent {
     getVehicleDesignation(value: ResourceDetails): string {
         let resourceName: string =
             (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] as string;
-        if (resourceName === '' || resourceName === 'Drivers list-two') {
+        if (resourceName === 'Drivers' || resourceName === 'Movers') {
             return '';
         } else {
             return (value as ResourceDetails).resourceData.Vehicle as string;
@@ -134,7 +134,7 @@ export class AppComponent {
                         EndTime: cellData.endTime,
                         IsAllDay: cellData.isAllDay,
                         Description: filteredData[0].Description,
-                        DriverslistID: resourceDetails.resourceData.GroupId,
+                        AssignID: resourceDetails.resourceData.GroupId,
                         DriverID: resourceDetails.resourceData.Id
                     };
                     this.scheduleObj.openEditor(eventData, 'Add', true);

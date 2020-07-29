@@ -3,7 +3,7 @@
 (actionBegin)="onActionBegin($event)" (drag)="onItemDrag($event)">
 
 <e-resources>
-  <e-resource field='DriverlistID' title='Driver-list' name='Driver-list' [dataSource]='departmentDataSource'
+  <e-resource field='AssignID' title='Assign-To' name='Assign' [dataSource]='departmentDataSource'
       textField='Text' idField='Id' colorField='Color'>
   </e-resource>
   <e-resource field='DriverID' title='Driver' name='Driver' [dataSource]='DriverDataSource'
@@ -21,8 +21,8 @@
 </ng-template>
 <e-views>
   <e-view option='TimelineDay'></e-view>
-  <e-view option='TimelineWeek'></e-view>
-  <!-- <e-view option='Agenda'></e-view> -->
+  <e-view option='Week'></e-view>
+  <e-view option='Agenda'></e-view>
 </e-views>
 </ejs-schedule>
 </div>
